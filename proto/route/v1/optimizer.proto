@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package route.v1;
+
+option go_package = "github.com/runroute/runroute/services/api/internal/gen/route/v1;routev1";
+
+service RouteOptimizer {
+  rpc Check(CheckRequest) returns (CheckResponse);
+}
+
+enum ServingStatus {
+  SERVING_STATUS_UNSPECIFIED = 0;
+  SERVING_STATUS_UP = 1;
+  SERVING_STATUS_DEGRADED = 2;
+  SERVING_STATUS_DOWN = 3;
+}
+
+message CheckRequest {}
+
+message DependencyStatus {
+  string name = 1;
+  ServingStatus status = 2;
+  string version = 3;
+  string dataset_version = 4;
+  string error = 5;
+  int64 latency_ms = 6;
+}
+
+message CheckResponse {
+  ServingStatus status = 1;
+  string service_version = 2;
+  repeated DependencyStatus dependencies = 3;
+}

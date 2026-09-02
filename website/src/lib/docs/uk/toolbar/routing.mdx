@@ -1,0 +1,84 @@
+---
+title: Планування та редагування маршруту
+---
+
+<script>
+    import { Pencil, Route, Bike, TriangleAlert, ArrowRightLeft, House, Repeat, Trash2, CirclePlay, SquareArrowUpLeft } from '@lucide/svelte';
+    import DocsNote from '$lib/components/docs/DocsNote.svelte';
+    import Routing from '$lib/components/toolbar/tools/routing/Routing.svelte';
+    import DocsImage from '$lib/components/docs/DocsImage.svelte';
+</script>
+
+# <Pencil size="24" class="inline-block" style="margin-bottom: 5px" /> { title }
+
+Інструмент планування та редагування маршруту дає змогу створювати й редагувати маршрути, розміщуючи або переміщуючи точки на карті.
+
+## Налаштування
+
+Як показано нижче, діалогове вікно інструмент містить кілька параметрів, які можна контролювати поведінку побудови маршруту.
+Щоб звільнити місце, діалогове вікно можна згорнути, натиснувши <button><SquareArrowUpLeft size="16" class="inline-block" style="margin-bottom: 2px" /></button>.
+
+<div class="flex flex-row justify-center">
+    <Routing minimizable={false} class="text-foreground p-3 border rounded-md shadow-lg" />
+</div>
+
+### <Route size="16" class="inline-block" style="margin-bottom: 2px" /> Побудова маршруту
+
+Якщо побудову маршруту ввімкнено, точки, які ви розміщуєте або переміщуєте на карті, з’єднуються маршрутом, розрахованим за дорожньою мережею <a href="https://www.openstreetmap.org" target="_blank">OpenStreetMap</a>.
+Вимкніть побудову маршруту, щоб з’єднувати точки прямими лініями.
+Це налаштування також можна перемкнути, натиснувши <kbd>F5</kbd>.
+
+### <Bike size="16" class="inline-block" style="margin-bottom: 2px" /> Активність
+
+Виберіть тип активності, для якої прокладати маршрути.
+
+### <TriangleAlert size="16" class="inline-block" style="margin-bottom: 2px" /> Дозволити приватні дороги
+
+Якщо цей параметр увімкнено, приватні дороги враховуватимуться під час побудови маршрутів.
+
+<DocsNote type="warning">
+
+Використовуйте цей параметр лише тоді, коли добре знаєте місцевість і маєте дозвіл користуватися відповідними дорогами.
+
+</DocsNote>
+
+## Прокладання та редагування маршрутів
+
+Щоб створити маршрут або продовжити наявний, достатньо клацнути на карті й додати нову точку.
+
+Наявну точку також можна перетягнути, щоб перебудувати сегмент між нею та попередньою і наступною точками.
+
+Нові точки також можна додавати між наявними: наведіть курсор на сегмент, який їх з’єднує, і перетягніть точку, що з’явиться, у потрібне місце.
+На пристроях із сенсорним екраном торкніться сегмента, щоб вставити нову точку.
+
+<DocsNote>
+
+Під час редагування імпортованих GPX-файлів початковий набір точок створюється автоматично.
+Щоб полегшити редагування, що більше наближено карту, то більше точок відображається.
+Завдяки цьому маршрут можна редагувати з різною деталізацією.
+
+</DocsNote>
+
+Нарешті, щоб видалити точку, клацніть на неї та виберіть <button><Trash2 size="16" class="inline-block" style="margin-bottom: 4px" /> Видалити</button> у контекстному меню.
+
+<DocsImage src="tools/routing" alt="Опорні точки спрощують редагування маршруту." />
+
+## Додаткові інструменти
+
+Інструменти нижче автоматизують деякі типові дії з редагування маршруту.
+
+### <ArrowRightLeft size="16" class="inline-block" style="margin-bottom: 2px" /> Розвернути
+
+Змінити напрямок маршруту.
+
+### <House size="16" class="inline-block" style="margin-bottom: 2px" /> До початку маршруту
+
+Замкнути маршрут до початкової точки з урахуванням вибраних налаштувань побудови маршруту.
+
+### <Repeat size="16" class="inline-block" style="margin-bottom: 2px" /> Маршрут туди й назад
+
+Повернутися до старту тим самим маршрутом.
+
+### <CirclePlay size="16" class="inline-block" style="margin-bottom: 2px" /> Змінити початкову точку кільцевого маршруту
+
+Коли кінцева точка маршруту достатньо близько до початкової, можна змінити початок кільцевого маршруту: клацніть будь-яку точку й виберіть <button><CirclePlay size="16" class="inline-block" style="margin-bottom: 2px" /> Почати кільцевий маршрут тут</button> у контекстному меню.

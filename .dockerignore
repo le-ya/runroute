@@ -1,0 +1,9 @@
+.git
+.github
+.tools
+.docker-rootless
+data
+**/node_modules
+**/target
+**/.svelte-kit
+website/build

@@ -1,0 +1,27 @@
+---
+title: Інтеграція
+---
+
+<script>
+    import DocsNote from '$lib/components/docs/DocsNote.svelte';
+    import EmbeddingPlayground from '$lib/components/embedding/EmbeddingPlayground.svelte';
+</script>
+
+# { title }
+
+Ви можете використовувати **gpx.studio**, щоб створювати карти з вашими GPX-файлами та вбудовувати їх на свій сайт.
+
+Все, що вам потрібно:
+
+1. GPX-файли, розміщені на вашому сервері чи Google Drive або доступні за публічною URL-адресою;
+2. _Необов’язково:_ <a href="https://cloud.maptiler.com/auth/widget?next=https://cloud.maptiler.com/maps/" target="_blank">ключ MapTiler</a> для завантаження карт MapTiler.
+
+Після цього можна скористатися конфігуратором нижче, щоб налаштувати карту та згенерувати відповідний HTML-код.
+
+<DocsNote type="warning">
+
+На вашому сервері потрібно буде налаштувати заголовки <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" target="_blank">Cross-Origin Resource Sharing (CORS)</a>, щоб дозволити <b>gpx.studio</b> завантажувати ваші GPX-файли.
+
+</DocsNote>
+
+<EmbeddingPlayground />

@@ -1,0 +1,28 @@
+---
+title: Об’єднання
+---
+
+<script>
+    import { Group } from '@lucide/svelte';
+    import Merge from '$lib/components/toolbar/tools/Merge.svelte';
+    import DocsNote from '$lib/components/docs/DocsNote.svelte';
+</script>
+
+# <Group size="24" class="inline-block" style="margin-bottom: 5px" /> { title }
+
+Щоб скористатися цим інструментом, потрібно [вибрати](../files-and-stats) кілька файлів, [треків або сегментів](../gpx).
+
+- Якщо потрібно створити один суцільний трек із вибраного, виберіть параметр **З’єднати треки** та підтвердьте.
+- Другий параметр дає змогу створювати та керувати файлами з кількома [треками або сегментами](../gpx).
+  Після об’єднання файлів (або треків) буде створено один файл (або трек), який міститиме всі вибрані треки (або сегменти).
+
+<DocsNote>
+
+Вибрані елементи об’єднуються в тому порядку, у якому вони відображаються у списку файлів.
+За потреби змініть порядок елементів перетягуванням.
+
+</DocsNote>
+
+<div class="flex flex-row justify-center">
+    <Merge class="text-foreground p-3 border rounded-md shadow-lg" />
+</div>

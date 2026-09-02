@@ -1,0 +1,27 @@
+---
+title: Час
+---
+
+<script>
+    import { CalendarClock } from '@lucide/svelte';
+    import Time from '$lib/components/toolbar/tools/Time.svelte';
+    import DocsNote from '$lib/components/docs/DocsNote.svelte';
+</script>
+
+# <CalendarClock size="24" class="inline-block" style="margin-bottom: 5px" /> { title }
+
+Цей інструмент дає змогу змінювати або додавати часові мітки до треку.
+Достатньо заповнити форму нижче й підтвердити її після завершення.
+
+<div class="flex flex-row justify-center">
+    <Time class="text-foreground p-3 border rounded-md shadow-lg" />
+</div>
+
+Коли ви змінюєте швидкість, час руху у формі відповідно оновлюється, і навпаки.
+Аналогічно, під час зміни часу початку час завершення оновлюється, щоб загальна тривалість залишалася незмінною, і навпаки.
+
+<DocsNote>
+
+Якщо в треку вже є часові мітки, зміна часу або швидкості лише зсуне, розтягне чи стисне їх відповідно.
+
+</DocsNote>

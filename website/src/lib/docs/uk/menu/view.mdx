@@ -1,0 +1,54 @@
+---
+title: Параметри виду
+---
+
+<script lang="ts">
+    import { ChartArea, ListTree, Map, Layers2, Coins, Milestone, Box, Maximize2 } from '@lucide/svelte';
+    import DocsNote from '$lib/components/docs/DocsNote.svelte';
+</script>
+
+# { title }
+
+Це меню надає можливість налаштовувати інтерфейс та вигляд карти.
+
+### <ChartArea size="16" class="inline-block" style="margin-bottom: 2px" /> Профіль висоти
+
+Приховати графік висоти, щоб звільнити більше місця для карти, або відобразіть його, щоб дослідити вибрану ділянку.
+
+### <ListTree size="16" class="inline-block" style="margin-bottom: 2px" /> Дерево файлів
+
+Показати або сховати [дерево файлів](../files-and-stats).
+Ця схема ідеально підходить для роботи з великою кількістю відкритих файлів, оскільки вони розміщуються у вигляді вертикального списку в правій частині екрана.
+Також дерево файлів дає змогу переглядати [треки, сегменти та точки інтересу](../gpx), що містяться всередині файлів, у згортних розділах.
+
+### <Map size="16" class="inline-block" style="margin-bottom: 2px" /> Перемкнутися на попередню базову карту
+
+Перемкнути базову карту на попередньо вибрану через [керування шарами карти](../map-controls).
+
+### <Layers2 size="16" class="inline-block" style="margin-bottom: 2px" /> Перемкнути накладені шари
+
+Перемкнути видимість накладених шарів карти, вибраних через [керування шарами карти](../map-controls).
+
+### <Coins size="16" class="inline-block" style="margin-bottom: 2px" /> Позначки відстані
+
+Перемкнути видимість позначок відстані на карті.
+Позначки відстані відображаються для поточного виділення, як і [профіль висоти](../files-and-stats).
+
+### <Milestone size="16" class="inline-block" style="margin-bottom: 2px" /> Стрілки напрямку
+
+Перемкнути видимість стрілок напрямку.
+
+### <Box size="16" class="inline-block" style="margin-bottom: 2px" /> Перемкнути 3D
+
+Увімкнути або вимкнути режим 3D-карти.
+
+<DocsNote>
+
+Щоб керувати орієнтацією та нахилом карти, також можна перетягувати карту, утримуючи <kbd>Ctrl</kbd>.
+
+</DocsNote>
+
+### <Maximize2 size="16" class="inline-block" style="margin-bottom: 2px" /> Повноекранний режим
+
+Увійти або вийти з повноекранного режиму.
+Ви також можете натиснути <kbd>F11</kbd>, щоб перемкнути режим, або <kbd>Escape</kbd>, щоб вийти.

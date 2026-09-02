@@ -1,0 +1,50 @@
+---
+title: Налаштування
+---
+
+<script lang="ts">
+    import { Ruler, Zap, Thermometer, Languages, Sun, PersonStanding, Layers } from '@lucide/svelte';
+    import DocsNote from '$lib/components/docs/DocsNote.svelte';
+</script>
+
+# { title }
+
+### <Ruler size="16" class="inline-block" style="margin-bottom: 2px" /> Одиниці відстані
+
+Змінити одиниці виміру для відображення відстаней в інтерфейсі.
+
+### <Zap size="16" class="inline-block" style="margin-bottom: 2px" /> Одиниці швидкості
+
+Змінити одиниці виміру для відображення швидкостей в інтерфейсі.
+Ви можете вибрати між відстанню за годину або хвилинами на одиницю відстані, що може бути зручнішим для бігових активностей.
+
+### <Thermometer size="16" class="inline-block" style="margin-bottom: 2px" /> Одиниці температури
+
+Змінити одиниці виміру для відображення температур в інтерфейсі.
+
+### <Languages size="16" class="inline-block" style="margin-bottom: 2px" /> Мова
+
+Змінити мову, яка використовується в інтерфейсі.
+
+<DocsNote>
+
+Ви можете зробити свій внесок, додаючи або покращуючи переклади в нашому <a href="https://crowdin.com/project/gpxstudio" target="_blank">проєкті Crowdin</a>.
+Якщо Ви хочете розпочати переклад новою мовою, будь ласка, <a href="#contact">зв'яжіться з нами</a>.
+Будемо дуже вдячні за будь-яку допомогу!
+
+</DocsNote>
+
+### <Sun size="16" class="inline-block" style="margin-bottom: 2px" /> Тема
+
+Змінити тему, яка використана в інтерфейсі.
+
+### <PersonStanding size="16" class="inline-block" style="margin-bottom: 2px" /> Джерело перегляду вулиці
+
+Змінити джерело, що використовується для [панелі перегляду вулиці](../map-controls).
+За замовчуванням використовується <a href="https://www.mapillary.com" target="_blank">Mapillary</a>, але ви також можете скористатися <a href="https://www.google.com/streetview/" target="_blank">Google Street View</a>.
+Дізнатися більше про те, як використовувати контроль над вулицею в [панелі перегляду вулиці](../map-controls).
+
+### <Layers size="16" class="inline-block" style="margin-bottom: 2px" /> Шари мапи...
+
+Відкрити діалог налаштування шарів: вмикання/вимикання, додавання власних, регулювання прозорості накладень та інше.
+Детальну інформацію про шари карти можна знайти в [розділі керування картою](../map-controls).

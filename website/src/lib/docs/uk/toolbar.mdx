@@ -1,0 +1,32 @@
+---
+title: Панель інструментів
+---
+
+<script lang="ts">
+    import Toolbar from '$lib/components/toolbar/Toolbar.svelte';
+	import { currentTool, Tool } from '$lib/components/toolbar/tools';
+	import { onMount, onDestroy } from 'svelte';
+
+    onMount(() => {
+        currentTool.set(Tool.ROUTING);
+    });
+
+    onDestroy(() => {
+        currentTool.set(null);
+    });
+</script>
+
+# { title }
+
+Панель інструментів розташована ліворуч від карти та є серцем застосунку, адже надає доступ до основних можливостей **gpx.studio**.
+Кожен інструмент має значок, за якою його можна активувати.
+
+<div class="flex flex-row justify-center text-foreground">
+    <div>
+        <Toolbar class="border rounded-md shadow-lg" />
+    </div>
+</div>
+
+Як і [дії редагування](./menu/edit), більшість інструментів можна застосовувати одразу до кількох файлів, а також до [вкладених треків і сегментів](./gpx).
+
+У наступних розділах кожен інструмент описано докладно.

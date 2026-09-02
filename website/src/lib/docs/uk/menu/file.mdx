@@ -1,0 +1,52 @@
+---
+title: Дії з файлом
+---
+
+<script lang="ts">
+    import { Plus, FolderOpen, Copy, FileX, Download } from '@lucide/svelte';
+    import DocsNote from '$lib/components/docs/DocsNote.svelte';
+</script>
+
+# { title }
+
+Меню дій файлу містить набір доволі очевидних операцій із файлами.
+
+### <Plus size="16" class="inline-block" style="margin-bottom: 2px" /> Новий
+
+Створити новий порожній файл.
+
+### <FolderOpen size="16" class="inline-block" style="margin-bottom: 2px" /> Відкрити...
+
+Відкрити файли з комп'ютера. 
+
+<DocsNote>
+
+Ви також можете перетягувати файли безпосередньо з файлової системи у вікно.
+
+</DocsNote>
+
+### <Copy size="16" class="inline-block" style="margin-bottom: 2px" /> Дублювати
+
+Створити копію обраних файлів.
+
+### <FileX size="16" class="inline-block" style="margin-bottom: 2px" /> Видалити
+
+Видалити обрані файли.
+
+### <FileX size="16" class="inline-block" style="margin-bottom: 2px" /> Видалити все
+
+Видалити всі файли.
+
+### <Download size="16" class="inline-block" style="margin-bottom: 2px" /> Експортувати...
+
+Відкрийте діалогове вікно експорту, щоб зберегти поточні обрані файли на ваш комп'ютер.
+
+### <Download size="16" class="inline-block" style="margin-bottom: 2px" /> Експортувати все...
+
+Відкрийте діалог експорту для збереження всіх файлів на ваш комп'ютер.
+
+<DocsNote type="warning">
+
+Якщо завантаження не починається після натискання кнопки завантаження, будь ласка, перевірте налаштування браузера, щоб дозволити завантаження з <b>gpx.studio</b>.
+
+</DocsNote>

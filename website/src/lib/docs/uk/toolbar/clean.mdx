@@ -1,0 +1,18 @@
+---
+title: Очищення
+---
+
+<script>
+    import { SquareDashedMousePointer } from '@lucide/svelte';
+    import Clean from '$lib/components/toolbar/tools/Clean.svelte';
+</script>
+
+# <SquareDashedMousePointer size="24" class="inline-block" style="margin-bottom: 5px" /> { title }
+
+Коли вибрано інструмент очистити, перетягуванням на карті можна створити прямокутне виділення.
+
+Залежно від параметрів, вибраних у показаному нижче діалоговому вікні, натискання кнопки видалення прибере GPS-точки та/або [точки інтересу](../gpx), розташовані всередині або поза межами виділення.
+
+<div class="flex flex-row justify-center">
+    <Clean class="text-foreground p-3 border rounded-md shadow-lg" />
+</div>

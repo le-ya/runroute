@@ -1,0 +1,72 @@
+---
+title: Керування картою
+---
+
+<script>
+    import { Plus, Minus, Diff, Compass, Search, LocateFixed, PersonStanding, Layers } from '@lucide/svelte';
+    import DocsNote from '$lib/components/docs/DocsNote.svelte';
+    import DocsLayers from '$lib/components/docs/DocsLayers.svelte';
+</script>
+
+# { title }
+
+Елементи керування картою розташовані в правій частині інтерфейсу.
+Вони дають змогу переміщатися картою, наближати й віддаляти її, а також перемикатися між різними стилями карти.
+
+### <Diff size="16" class="inline-block" style="margin-bottom: 2px" /> Карта навігації
+
+Елементи керування вгорі дають змогу наближати <Plus size="16" class="inline-block" style="margin-bottom: 2px" /> і віддаляти <Minus size="16" class="inline-block" style="margin-bottom: 2px" /> карту, а також змінювати її орієнтацію та нахил <Compass size="16" class="inline-block" style="margin-bottom: 2px" />.
+
+<DocsNote>
+
+Щоб керувати орієнтацією та нахилом карти, також можна перетягувати карту, утримуючи <kbd>Ctrl</kbd>.
+
+</DocsNote>
+
+### <Search size="16" class="inline-block" style="margin-bottom: 2px" /> Панель пошуку
+
+Рядок пошуку можна використовувати, щоб знайти адресу та перейти до неї на карті.
+
+### <LocateFixed size="16" class="inline-block" style="margin-bottom: 2px" /> Кнопка визначення місцезнаходження
+
+Кнопка визначення місцезнаходження центрує карту на вашому поточному місці.
+
+<DocsNote>
+
+Це працює лише тоді, коли ви дозволили браузеру та <b>gpx.studio</b> доступ до свого місцезнаходження.
+
+</DocsNote>
+
+### <PersonStanding size="16" class="inline-block" style="margin-bottom: 2px" /> Перегляд вулиць
+
+Ця кнопка вмикає режим перегляду вулиць на карті.
+Залежно від джерела перегляду вулиць, вибраного в [налаштуваннях](./menu/settings), зображення перегляду вулиць відкриваються по-різному.
+
+- <a href="https://www.mapillary.com/" target="_blank">Mapillary</a>: покриття перегляду вулиць відображатиметься на карті зеленими лініями. За достатнього наближення зелені точки показуватимуть точні місця, де доступні зображення перегляду вулиць. Наведення на зелену точку покаже зображення перегляду вулиць у цьому місці.
+- <a href="https://www.google.com/streetview/" target="_blank">Google Street View</a>: клацніть на карті, щоб відкрити нову вкладку із зображенням перегляду вулиць у цьому місці.
+
+### <Layers size="16" class="inline-block" style="margin-bottom: 2px" /> Шари карти
+
+Кнопка шарів карти дає змогу перемикатися між різними базовими картами, а також показувати або сховати накладені шари карти й категорії точок інтересу.
+
+- **Базові карти** — це фонові карти, які показують основні географічні об’єкти світу.
+  Залежно від призначення, базові карти мають різні стилі та рівні деталізації.
+  Одночасно може відображатися лише одна базова карта.
+- **Накладені шари** — це додаткові шари, які можна відображати поверх базової карти для надання додаткової інформації.
+- **Точки інтересу** можна додавати на карту, щоб показувати різні категорії місць, наприклад магазини, ресторани або житло.
+
+<div class="flex flex-col items-center">
+<DocsLayers />
+<span class="text-sm text-center mt-2">
+
+Наведіть курсор на карту, щоб показати накладений шар <a href="https://hiking.waymarkedtrails.org" target="_blank">пішохідних маршрутів Waymarked Trails</a> поверх топографічної базової карти.
+
+</span>
+</div>
+
+У **gpx.studio** доступна велика колекція глобальних і локальних базових карт та накладених шарів, а також добірка категорій точок інтересу.
+Їх можна ввімкнути в діалоговому вікні [налаштувань шарів карти](./menu/settings).
+
+У цих налаштуваннях також можна керувати прозорістю накладених шарів.
+
+Для досвідчених користувачів є можливість додавати власні базові карти та накладені шари, указавши URL-адреси <a href="https://en.wikipedia.org/wiki/Web_Map_Tile_Service" target="_blank">WMTS</a>, <a href="https://en.wikipedia.org/wiki/Web_Map_Service" target="_blank">WMS</a> або <a href="https://maplibre.org/maplibre-style-spec/" target="_blank">MapLibre JSON</a>.

@@ -1,0 +1,26 @@
+---
+title: Виокремлення
+---
+
+<script>
+    import { Ungroup } from '@lucide/svelte';
+    import Extract from '$lib/components/toolbar/tools/Extract.svelte';
+    import DocsNote from '$lib/components/docs/DocsNote.svelte';
+</script>
+
+# <Ungroup size="24" class="inline-block" style="margin-bottom: 5px" /> { title }
+
+Цей інструмент дає змогу виокремити [треки (або сегменти)](../gpx) з файлів (або треків), у яких міститься кілька таких елементів.
+
+<div class="flex flex-row justify-center">
+    <Extract class="text-foreground p-3 border rounded-md shadow-lg" />
+</div>
+
+Якщо застосувати інструмент до файлу, який містить кілька треків, для кожного з них буде створено окремий файл.
+Так само, якщо застосувати інструмент до треку, який містить кілька сегментів, буде створено новий трек (у тому самому файлі) для кожного з цих сегментів.
+
+<DocsNote>
+
+Під час виокремлення треків із файлу, що містить <a href="../gpx">точки інтересу</a>, інструмент автоматично призначить кожну точку інтересу до найближчого до неї треку.
+
+</DocsNote>
