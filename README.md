@@ -1,81 +1,79 @@
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="website/static/logo-dark.svg">
-  <img alt="Logo of gpx.studio." src="website/static/logo.svg">
-</picture>
+# runroute (v2 - Rust)
 
-[**gpx.studio**](https://gpx.studio) is an online tool for creating and editing GPX files.
+> Générateur d'itinéraires de course à pied et trail haute performance pour Lyon et les Monts d'Or en **Rust**.
 
-![gpx.studio screenshot](website/src/lib/assets/img/docs/getting-started/interface.webp)
+Version réécrite de `runroute` offrant un gain de vitesse de **50x à 60x** par rapport à l'implémentation Python historique (génération en **~1.5 à 2 secondes** contre 80–90 secondes).
 
-This repository contains the source code of the website.
+---
 
-## Contributing
+## Fonctionnalités
 
-Please create an issue if you find a bug or have a feature request.
+- ⚡ **Ultra-rapide** : chargement du graphe (158 704 nœuds, 455 003 arêtes) en **< 200 ms** via cache binaire (`graph.bin`), calcul Dijkstra multi-threadé avec **Rayon**, beam search instantané.
+- ⛰️ **Multi-critères Altimétrique & Sentiers** : optimisation simultanée de la distance cible, du dénivelé ($D^+$, $D^-$), de la part de sentiers/chemins (profils *trail-first*), et minimisation stricte du recouvrement (*overlap*).
+- 📍 **Points d'intérêt & Gares/Stations** : support des départs/arrivées prédéfinis (`home`, `carret_sedallian`, `couzon`, `ile_barbe`) ou coordonnées GPS libres `lat,lon`.
+- 📊 **Parité complète des exports** :
+  - Trace **GPX 1.1** enrichie (waypoints de départ/arrivée, altitudes lissées, compatible montres COROS/Garmin/Strava).
+  - Rapport complet **JSON (schéma 2.3)** avec distribution des revêtements (*trail*, *path*, *paved*, *steps*) et types de voies (*path*, *pedestrian*, *quiet_road*, etc.).
+  - Comparatif **GeoJSON** des alternatives générées.
 
-Code contributions are also welcome, but except for obvious bug fixes, please open an issue first to discuss the changes you would like to make.
+---
 
-## Translation
+## Profils sportifs disponibles
 
-The website is translated by volunteers on a collaborative translation platform.
-You can help complete and improve the translations by joining the [Crowdin project](https://crowdin.com/project/gpxstudio).
-If you would like to start the translation in a new language, please contact me or create an issue.
+| Profil | Poids D+ | Poids D- | Revêtement prioritaire | Recouvrement max |
+| :--- | :---: | :---: | :--- | :---: |
+| `trail_drills` | 1.0 | 1.0 | Sentiers & chemins (*trail-first*) | 25% |
+| `long_run` | 1.8 | 1.2 | Sentiers & chemins | 15% |
+| `rolling` | 2.0 | 1.5 | Équilibré sentier / bitume | 20% |
+| `flat` | 8.0 | 5.0 | Bitume roulant (*paved-first*) | 20% |
+| `threshold` | 4.0 | 3.0 | Bitume roulant | 25% |
+| `hills` | 0.4 | 0.6 | Répétitions autorisées | 80% |
 
-Any help is greatly appreciated!
+---
 
-## Development
+## Installation & Compilation
 
-The code is split into two parts:
-
-- `gpx`: a Typescript library for parsing and manipulating GPX files,
-- `website`: the website itself, which is a [SvelteKit](https://kit.svelte.dev/) application.
-
-You will need [Node.js](https://nodejs.org/) to build and run these two parts.
-
-### Building the `gpx` library
-
-```bash
-cd gpx
-npm install
-npm run build
-```
-
-### Running the website
-
-To be able to load the map, you will need to create your own <a href="https://cloud.maptiler.com/auth/widget?next=https://cloud.maptiler.com/maps/" target="_blank">MapTiler key</a> and store it in a `.env` file in the `website` directory.
+Nécessite Rust 1.82+ (recommandé 1.85+) :
 
 ```bash
-cd website
-echo PUBLIC_MAPTILER_KEY={YOUR_MAPTILER_KEY} >> .env
-npm install
-npm run dev
+cargo build --release
 ```
 
-## Credits
+Le binaire optimisé est produit dans `./target/release/runroute`.
 
-This project has been made possible thanks to the following open source projects:
+---
 
-- Development:
-    - [Svelte](https://github.com/sveltejs/svelte) and [SvelteKit](https://github.com/sveltejs/kit) — seamless development experience
-    - [MDsveX](https://github.com/pngwn/MDsveX) — allowing a Markdown-based documentation
-- Design:
-    - [shadcn-svelte](https://github.com/huntabyte/shadcn-svelte) — beautiful components
-    - [@lucide/svelte](https://github.com/lucide-icons/lucide/tree/main/packages/svelte) — beautiful icons
-    - [tailwindcss](https://github.com/tailwindlabs/tailwindcss) — easy styling
-    - [Chart.js](https://github.com/chartjs/Chart.js) — beautiful and fast charts
-- Logic:
-    - [immer](https://github.com/immerjs/immer) — complex state management
-    - [Dexie.js](https://github.com/dexie/Dexie.js) — IndexedDB wrapper
-    - [fast-xml-parser](https://github.com/NaturalIntelligence/fast-xml-parser) — fast GPX file parsing
-    - [SortableJS](https://github.com/SortableJS/Sortable) — creating a sortable file tree
-- Mapping:
-    - [MapLibre GL JS](https://github.com/maplibre/maplibre-gl-js) — beautiful and fast interactive map rendering
-    - [GraphHopper](https://github.com/graphhopper/graphhopper) — powerful routing engine
-    - [OpenStreetMap](https://www.openstreetmap.org) — open map data used by most of the map layers, and by the routing engine
-    - [Mapterhorn](https://github.com/mapterhorn/mapterhorn) — high-quality open terrain data used by some map layers (including for 3D), and by the routing engine
-- Search:
-    - [DocSearch](https://github.com/algolia/docsearch) — search engine for the documentation
+## Utilisation
 
-## License
+### Générer un parcours trail 21 km / 900 m D+ depuis la station Vélo'v Carret / Sédallian :
+```bash
+./target/release/runroute route \
+  --start carret_sedallian \
+  --profile trail_drills \
+  --distance 21 \
+  --dplus 900 \
+  -v
+```
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+### Autres exemples :
+```bash
+# Sortie longue 25 km depuis Couzon avec D+ libre
+./target/release/runroute route --start couzon --profile long_run --distance 25
+
+# Boucle vallonnée 15 km depuis le domicile
+./target/release/runroute route --start home --profile rolling --distance 15 --dplus 450
+```
+
+### Conversion explicite du graphe :
+```bash
+./target/release/runroute convert --data-dir data
+```
+*(Remarque : la conversion se fait automatiquement au premier lancement si `graph.bin` n'existe pas).*
+
+---
+
+## Tests
+
+```bash
+cargo test
+```

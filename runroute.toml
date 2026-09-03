@@ -1,0 +1,18 @@
+data_dir = "data"
+# Sous WSL2, utilisez par exemple /mnt/c/Users/<vous>/Downloads/RunRoute
+output_dir = "gpx"
+
+# min_lat, min_lon, max_lat, max_lon — Lyon nord/ouest + Monts d'Or
+bbox = [45.70, 4.55, 45.95, 4.90]
+velov_max_km = 2.0
+max_distance_km = 25.0
+max_dplus_m = 1200.0
+auto_departures = ["ile_barbe"]
+vertical_search_timeout_s = 90
+dplus_calibration_factor = 1.10
+
+[points]
+home = [45.786902, 4.7896771]
+ile_barbe = [45.797415, 4.829038]
+carret_sedallian = [45.792478, 4.820567]
+couzon = [45.846034, 4.832409]
