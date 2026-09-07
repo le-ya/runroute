@@ -41,6 +41,14 @@ enum Commands {
         #[arg(long, default_value = "natural")]
         route_mode: String,
 
+        /// Point d'arrivée optionnel (nom de point ou lat,lon)
+        #[arg(long)]
+        end: Option<String>,
+
+        /// Forcer une boucle avec arrivée au point de départ
+        #[arg(long, name = "loop")]
+        r#loop: bool,
+
         /// Nom ou libellé de la trace GPX générée
         #[arg(long)]
         name: Option<String>,
@@ -117,6 +125,8 @@ fn main() -> Result<()> {
             distance,
             dplus,
             route_mode,
+            end,
+            r#loop,
             name,
             seed,
             data_dir,
@@ -167,7 +177,14 @@ fn main() -> Result<()> {
             let mut destinations = Vec::new();
             let mut endpoint_names = hashbrown::HashMap::new();
 
-            if let Some(&(h_lat, h_lon)) = cfg.points.get("home") {
+            if r#loop || end.as_deref() == Some(&start) {
+                destinations.push(start_idx);
+                endpoint_names.insert(start_idx, start_name.clone());
+            } else if let Some(ref end_str) = end {
+                let (end_idx, end_n) = resolve_start_node(&graph, &cfg, end_str)?;
+                destinations.push(end_idx);
+                endpoint_names.insert(end_idx, end_n);
+            } else if let Some(&(h_lat, h_lon)) = cfg.points.get("home") {
                 let (hx, hy) = wgs_to_l93(h_lat, h_lon);
                 let home_node = graph.nearest_node(hx, hy);
                 destinations.push(home_node);
